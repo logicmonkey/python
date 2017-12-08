@@ -1,10 +1,6 @@
 #!/usr/bin/env python
-from __future__ import print_function
 import sys
-reload(sys)
-sys.setdefaultencoding('utf-8') # handle difficult character encodings
-
-import urllib2
+from urllib.request import urlopen
 from bs4 import BeautifulSoup
 import re
 
@@ -19,7 +15,7 @@ def scrape(name, year):
     else:
         races_year = 'Results'+str(year)+'.html'
 
-    page = urllib2.urlopen(races_dir+races_year)
+    page = urlopen(races_dir+races_year)
     soup = BeautifulSoup(page, 'html.parser')
 
     # scrape the index page to get a list of links to race results
@@ -43,7 +39,7 @@ def scrape(name, year):
         sys.stdout.flush()
 
         try:
-            page = urllib2.urlopen(str(races_dir+race))
+            page = urlopen(str(races_dir+race))
         except:
             print('\nIgnoring broken link: {}'.format(str(races_dir+race)))
 
