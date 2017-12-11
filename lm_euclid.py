@@ -1,4 +1,4 @@
-#! /usr/bin/env python2.7
+#!/usr/bin/env python
 
 # Euclid's algorithm
 
@@ -20,7 +20,7 @@ def gcd(a):
         return gcd((r, a[0])) # remainder is new divisor
 
 t = (5940, 2160)
-print gcd(cex(t))
+print(gcd(cex(t)))
 
-print gcd(cex((182664, 154875)))
-print gcd(cex((gcd(cex((182664, 154875))), 137688))) # i'm not proud of this bit :)
+print(gcd(cex((182664, 154875))))
+print(gcd(cex((gcd(cex((182664, 154875))), 137688)))) # i'm not proud of this bit :)
