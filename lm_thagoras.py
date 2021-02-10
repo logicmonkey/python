@@ -1,8 +1,6 @@
-#!/usr/bin/python
-
 ################################################################################
 #
-#                           Pythagoras's Theorem
+#                           Pythagoras' Theorem
 #
 #                            b           a
 #                        +-----------------------+
@@ -38,90 +36,53 @@
 #         c^2 = a^2 + b^2
 #                                                             -=LogicMonkey=-
 ################################################################################
+import tkinter
+import time
 
-import pygtk
-import gtk, gobject, cairo
-from gtk import gdk
+DELTA = 2
+DELAY = 0.01
+XMAX = 240
+YMAX = XMAX
 
-class Screen( gtk.DrawingArea ):
-    def __init__( self, height ):
-        super( Screen, self ).__init__()
-        self.connect( "expose_event", self.do_expose_event )
-        self.connect( "button_press_event", self.do_button_press_event )
-        self.add_events( gdk.BUTTON_PRESS_MASK | gdk.BUTTON_RELEASE_MASK )
-        # animate
-        gobject.timeout_add( 10, self.invalidate ) # call every 10
-        self.set_size_request( height, height )
-        self.height = height
-        self.pause = False
+# Main window
+def create_window():
+  window = tkinter.Tk()
+  window.title("Pythagoras")
+  window.geometry('{}x{}'.format(XMAX, YMAX))
+  return window
 
-    def invalidate( self ):
-        if self.pause == False:
-            # unless paused, invalidate screen causing the expose event
-            self.alloc = self.get_allocation( )
-            rect = gtk.gdk.Rectangle( self.alloc.x, self.alloc.y,
-                                      self.alloc.width, self.alloc.height )
-            self.window.invalidate_rect( rect, True )        
-        return True # allow timeout to tick again
+# Create canvas and add to main window
+def create_canvas(window):
+  canvas = tkinter.Canvas(window)
+  canvas.configure(bg="black")
+  canvas.pack(fill="both", expand=True)
+  return canvas
 
-    def do_expose_event( self, widget, event ):
-        self.cr = self.window.cairo_create()
-        self.draw()
+# Animation loop
+def animate(window, canvas):
+  # set initial coords
+  direction = 1
+  var_a = 1
+  var_b = XMAX-1-var_a
 
-    def do_button_press_event( self, widget, event ):
-        self.pause = not self.pause
+  while True:
+    # Draw everything
+    canvas.create_rectangle(0, 0, var_a, var_a, outline='red', fill='red')
+    canvas.create_rectangle(var_a, var_a, XMAX, XMAX, outline='green', fill='green')
+    canvas.create_line(var_a, 0, 0, var_b, var_b, YMAX, XMAX, var_a, var_a, 0, fill='blue')
 
-class Pythagoras( Screen ):
-    def __init__( self, height ):
-        Screen.__init__( self, height )
-        self.a = 0
-        self.direction = 1 # +1 or -1 signed increment for a
+    window.update()
+    time.sleep(DELAY)
 
-    def draw( self ):
-        cr = self.cr # context shortcut
-        cr.set_line_width( 1.0 )
-        
-        b = self.height-1-self.a
-        
-        cr.set_source_rgb( 0, 1, 0 )
-        cr.rectangle( 0, 0, self.a, self.a ) # green a-squared
-        cr.fill()
-        
-        cr.set_source_rgb( 1, 0, 0 )
-        cr.rectangle( self.a, 0, b, b )      # red b-squared
-        cr.fill()
-        
-        cr.set_source_rgb( 0, 0, 1 )
-        cr.move_to( self.a+b, b )
-        cr.line_to( b, 0 )                   # top lines of blue c-squared
-        cr.line_to( 0, self.a )
-        cr.stroke()
-    
-        cr.move_to( 0, self.a )              # blue triangle bottom left
-        cr.line_to( 0, self.height-1 )       # draw only the perpendicular sides
-        cr.line_to( self.a, self.height-1 )  # cairo will join the last two
-        cr.fill()                            # points creating the hypotenuse
-    
-        cr.move_to( self.a, self.height-1 )  # bottom right line of blue square
-        cr.line_to( self.height-1, b )
-        cr.stroke()
-    
-        cr.set_source_rgb( 0, 0, 0 )
-        cr.move_to( self.a, 0 )
-        cr.line_to( self.a, self.a+b )       # black vertical
-        cr.stroke()
-    
-        self.a += self.direction
-    
-        if self.a == self.height or self.a == 0: self.direction *= -1 # reverse
+    # Update coords and delete everything
+    var_a += direction*DELTA
+    var_b = XMAX-1-var_a
+    if var_a >= XMAX or var_a <= 0:
+      direction *= -1
 
-def run( Widget, height ):
-    window = gtk.Window()
-    window.connect( "delete-event", gtk.main_quit )
-    widget = Widget( height )
-    widget.show()
-    window.add( widget )
-    window.present()
-    gtk.main()
+    canvas.delete("all")
 
-run( Pythagoras, 700 )
+# Main
+window = create_window()
+canvas = create_canvas(window)
+animate(window, canvas)
