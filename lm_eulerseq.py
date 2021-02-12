@@ -87,15 +87,13 @@ def animate(window, canvas):
 
     window.update()
     time.sleep(DELAY)
+    if xt == 0: time.sleep(0.5)
 
     # Update coords and delete everything
     xt += 1/FREQ
+    if xt >= 2*XMAX/3: xt = 0
 
     canvas.delete("dots")
-
-    if xt >= 2*XMAX/3:
-        xt = 0
-        time.sleep(0.5)
 
 # Main
 window = create_window()
