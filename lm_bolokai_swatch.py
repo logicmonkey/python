@@ -10,11 +10,18 @@ HEIGHT=60
 XMAX=COLS*WIDTH
 YMAX=ROWS*HEIGHT
 
+# Event handler
+def keypress(event):
+    global done
+    done = True
+    return
+
 # Main window
 def create_window():
   window = tkinter.Tk()
   window.title("palette")
   window.geometry('{}x{}'.format(XMAX, YMAX))
+  window.bind("<Key>", keypress)
   return window
 
 # Create canvas and add to main window
@@ -30,10 +37,13 @@ def draw(window, canvas):
       canvas.create_rectangle(x*WIDTH, y*HEIGHT, (x+1)*WIDTH, (y+1)*HEIGHT, fill=BOLOKAI[x+y*COLS])
       canvas.create_text(x*WIDTH+WIDTH/2, y*HEIGHT+HEIGHT/2, text=NAMES[x+y*COLS])
 
-  while True:
+  while not done:
     window.update()
 
+  window.destroy()
+
 # Main
+done = False
 window = create_window()
 canvas = create_canvas(window)
 draw(window, canvas)
