@@ -29,11 +29,18 @@ SCALE = 0.90
 FREQ = 3
 WIDTH = 2
 
+# Event handler
+def keypress(e):
+    global done
+    done = True
+    return
+
 # Main window
 def create_window():
   window = tkinter.Tk()
   window.title('Euler\'s Eqn')
   window.geometry('{}x{}'.format(XMAX, YMAX))
+  window.bind('<Key>', keypress)
   return window
 
 # Create canvas and add to main window
@@ -73,7 +80,7 @@ def animate(window, canvas):
 
   xt = 0
 
-  while True:
+  while not done:
     # Draw everything
     xpos_sin, ypos_sin, xpos_cos, ypos_cos, xpos_circ, ypos_circ = calcs(xt)
 
@@ -95,7 +102,10 @@ def animate(window, canvas):
 
     canvas.delete("dots")
 
+  window.destroy()
+
 # Main
+done = False
 window = create_window()
 canvas = create_canvas(window)
 animate(window, canvas)

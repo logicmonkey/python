@@ -46,11 +46,18 @@ DELAY = 0.01
 XMAX = 240
 YMAX = XMAX
 
+# Event handler
+def keypress(e):
+  global done
+  done = True
+  return
+
 # Main window
 def create_window():
   window = tkinter.Tk()
   window.title("Pythagoras")
   window.geometry('{}x{}'.format(XMAX, YMAX))
+  window.bind("<Key>", keypress)
   return window
 
 # Create canvas and add to main window
@@ -67,7 +74,7 @@ def animate(window, canvas):
   var_a = 1
   var_b = XMAX-1-var_a
 
-  while True:
+  while not done:
     # Draw everything
     canvas.create_rectangle(0, 0, var_a, var_a, outline=pastelorange, fill=pastelorange)
     canvas.create_rectangle(var_a, var_a, XMAX, XMAX, outline=brightpink, fill=brightpink)
@@ -85,7 +92,10 @@ def animate(window, canvas):
 
     canvas.delete("all")
 
+  window.destroy()
+
 # Main
+done = False
 window = create_window()
 canvas = create_canvas(window)
 animate(window, canvas)
