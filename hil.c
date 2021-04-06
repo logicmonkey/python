@@ -23,13 +23,12 @@ void hil_s_to_xy(unsigned s, int n, unsigned *xp, unsigned *yp){
 }
 
 #include <stdio.h>
-#include <math.h>
 
 int main() {
   int x, y, s;
   int ORDER = 2;
 
-  for (s=0; s<pow(2, 2*ORDER); s++) {
+  for (s=0; s<(1<<(2*ORDER)); s++) {
     hil_s_to_xy(s, ORDER, &x, &y);
     printf("%d %d\n", x, y);
   }
