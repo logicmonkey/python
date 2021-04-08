@@ -6,9 +6,9 @@ void hil_s_to_xy(unsigned s, int n, unsigned *xp, unsigned *yp){
   x=0;
   y=0;
 
-  for (i=0; i<2*n; i+=2) {
-    sa = (s>>(i+1))&1;
-    sb = (s>>i)&1;
+  for (i=0; i<2*n; i++) {
+    sa = (s>>(2*i+1))&1;
+    sb = (s>>(2*i))&1;
 
     if (sa==sb) {
       t = x;
@@ -21,14 +21,14 @@ void hil_s_to_xy(unsigned s, int n, unsigned *xp, unsigned *yp){
     }
 
     if (sa==1) {
-      x |= (1<<(i>>1)); // OR in a 1
+      x |= (1<<i); // OR in a 1
     } else
-      x &= ~(1<<(i>>1)); // AND in a 0
+      x &= ~(1<<i); // AND in a 0
 
     if ((sa^sb)==1)
-      y |= (1<<(i>>1)); // shift i/2
+      y |= (1<<i); // shift i/2
     else {
-      y &= ~(1<<(i>>1)); // loop step is +2
+      y &= ~(1<<i); // loop step is +2
     }
 
   }
