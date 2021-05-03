@@ -30,7 +30,7 @@ def hilbert_s_to_xy(s, bits):
 
 ORDER = 4
 STEP  = int(100/ORDER)
-DELAY = 0.01
+DELAY = 0.02
 XMAX = STEP*(2**ORDER)
 YMAX = XMAX
 
@@ -61,6 +61,7 @@ def animate(window, canvas):
   xlast = STEP/2
   ylast = STEP/2
   t = 0
+  mode = False
 
   while not done:
 
@@ -68,17 +69,25 @@ def animate(window, canvas):
     x = STEP/2 + STEP*x
     y = STEP/2 + STEP*y
 
-    canvas.create_line(xlast, ylast, x, y, width=4, fill=brightpink, tag='line')
+    if mode:
+      canvas.delete('text')
+      canvas.create_line(xlast, ylast, x, y, width=4, fill=brightpink, tag='line')
+    else:
+      canvas.delete('line')
+      canvas.create_text(x, y, text=t, tag='text')
+
     xlast = x
     ylast = y
     window.update()
-    #time.sleep(DELAY)
+    time.sleep(DELAY)
+    window.update()
 
     t += 1
     if t == 2**(2*ORDER):
       xlast = STEP/2
       ylast = STEP/2
       t=0
+      mode = not mode
 
   window.destroy()
 
