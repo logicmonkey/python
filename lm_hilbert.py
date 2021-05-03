@@ -28,6 +28,9 @@ def hilbert_s_to_xy(s, bits):
 
   return x&((1<<bits)-1), y&((1<<bits)-1)
 
+def hilbert_xy_to_s(x, y, bits):
+  return 123
+
 ORDER = 4
 STEP  = int(100/ORDER)
 DELAY = 0.02
@@ -61,32 +64,46 @@ def animate(window, canvas):
   xlast = STEP/2
   ylast = STEP/2
   t = 0
+  s = 0
   mode = False
 
   while not done:
 
-    x, y = hilbert_s_to_xy(t, ORDER)
-    x = STEP/2 + STEP*x
-    y = STEP/2 + STEP*y
-
     if mode:
-      canvas.delete('text')
+      x, y = hilbert_s_to_xy(t, ORDER)
+      x = STEP/2 + STEP*x
+      y = STEP/2 + STEP*y
+
       canvas.create_line(xlast, ylast, x, y, width=4, fill=brightpink, tag='line')
+
+      window.update()
+      time.sleep(DELAY)
+      window.update()
+
+      xlast = x
+      ylast = y
+
+      t += 1
+      if t == 2**(2*ORDER):
+        xlast = STEP/2
+        ylast = STEP/2
+        t=0
+        canvas.delete('line')
+        mode = not mode
+
     else:
-      canvas.delete('line')
-      canvas.create_text(x, y, text=t, tag='text')
+      for y in range(0, 2**ORDER):
+        for x in range(0, 2**ORDER):
+          s = hilbert_xy_to_s(x, y, ORDER)
+          xs = STEP/2 + STEP*x
+          ys = STEP/2 + STEP*y
+          canvas.create_text(xs, ys, text=s, tag='text')
 
-    xlast = x
-    ylast = y
-    window.update()
-    time.sleep(DELAY)
-    window.update()
+          window.update()
+          time.sleep(DELAY)
+          window.update()
 
-    t += 1
-    if t == 2**(2*ORDER):
-      xlast = STEP/2
-      ylast = STEP/2
-      t=0
+      canvas.delete('text')
       mode = not mode
 
   window.destroy()
