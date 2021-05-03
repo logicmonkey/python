@@ -7,7 +7,7 @@ def hilbert_s_to_xy(s, bits):
   x = 0
   y = 0
 
-  for i in range (0, bits):
+  for i in range(0, bits):
     sa = (s>>(2*i+1))&1
     sb = (s>>(2*i))&1
     if sa==sb:
@@ -29,10 +29,21 @@ def hilbert_s_to_xy(s, bits):
   return x&((1<<bits)-1), y&((1<<bits)-1)
 
 def hilbert_xy_to_s(x, y, bits):
-  return 123
+  s = 0
+
+  for i in reversed(range(0, 2**bits)):
+    xs = (x>>i)&1;
+    ys = (y>>i)&1;
+    if ys==0:
+      nxs = ~xs+1
+      x, y = y^nxs, x^nxs
+
+    s = (s<<2) | (xs<<1) | (xs^ys)
+
+  return s
 
 ORDER = 4
-STEP  = int(100/ORDER)
+STEP  = int(110/ORDER)
 DELAY = 0.02
 XMAX = STEP*(2**ORDER)
 YMAX = XMAX
@@ -89,6 +100,9 @@ def animate(window, canvas):
         ylast = STEP/2
         t=0
         canvas.delete('line')
+        time.sleep(20*DELAY)
+        window.update()
+        time.sleep(20*DELAY)
         mode = not mode
 
     else:
@@ -105,6 +119,10 @@ def animate(window, canvas):
 
       canvas.delete('text')
       mode = not mode
+
+      time.sleep(20*DELAY)
+      window.update()
+      time.sleep(20*DELAY)
 
   window.destroy()
 
