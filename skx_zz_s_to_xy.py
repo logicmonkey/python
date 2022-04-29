@@ -6,38 +6,56 @@
 # a 180 degree flip (effectively along that main diagonal)
 # Algorithm does not require a region to be anything other than just square.
 
-import math
+N = 5
 
-ORDER = 4
+import math
+STAGES = int(math.log(N,2))+1
+
+def isqrt_pipe(arem, aval, stage):
+    one = 1 << 2*stage
+    cmp = aval | one
+
+    yrem = arem
+    yval = aval >> 1
+    if arem >= cmp:
+        yrem = yrem - cmp
+        yval = yval | one
+    return yrem, yval
+
+def isqrt(n):
+    rem = n
+    val = 0
+    for ps in reversed(range(0, STAGES+1)):
+        rem, val = isqrt_pipe(rem, val, ps)
+    return val
 
 def tri(n):
-    return int(n*(n+1)/2) # Triangular number starts a diagonal
+    return (n*(n+1))>>1 # Triangular number starts a diagonal
 
 def tri_root(n):
-    return int((math.sqrt(8*n+1)-1)/2)
+    return (isqrt(n<<3|1)-1)>>1
 
-def zz_s_to_xy(s, r): # distance s, reflection
+def zz_s_to_xy(s, rpd, N): # distance s, right of principal diagonal
     tr = tri_root(s)
     t = tri(tr) # nearest triangular number less than or equal to s
     d = s-t     # distance from the triangular start of diagonal
     if tr%2:    # check if the diagonal is an odd or even one
-        if r:
-            return ORDER-1-d, ORDER-1-tr+d
+        if rpd: # right of principal diagonal
+            return N-1-d, N-1-tr+d
         else:
             return d, tr-d
     else:
-        if r:
-            return ORDER-1-tr+d, ORDER-1-d
+        if rpd:
+            return N-1-tr+d, N-1-d
         else:
             return tr-d, d
 
-def zigzag_s_to_xy(s, ORDER):
-    if (s<ORDER*ORDER/2): # left of main diagonal
-        return zz_s_to_xy(s, 0)
-    else:                 # right of main diagonal: reflect
-        return zz_s_to_xy(ORDER**2-1-s, 1)
+def zigzag_s_to_xy(s, N):
+    if (s<N*N/2): # left of principal diagonal
+        return zz_s_to_xy(s, 0, N)
+    else:         # right of principal diagonal: reflect
+        return zz_s_to_xy(N*N-1-s, 1, N)
 
-
-for s in range(0, ORDER*ORDER):
-    x, y = zigzag_s_to_xy(s, ORDER)
+for s in range(0, N*N):
+    x, y = zigzag_s_to_xy(s, N)
     print("{:3d} {:3d} {:3d}".format(s,x,y))

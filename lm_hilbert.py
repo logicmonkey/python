@@ -1,5 +1,6 @@
 import tkinter
 import time
+import random
 
 with open('lm_bolokai.py') as f: exec(f.read())
 
@@ -44,7 +45,7 @@ def hilbert_xy_to_s(x, y, bits):
 
 ORDER = 4
 STEP  = int(110/ORDER)
-DELAY = 0.02
+DELAY = 0.01
 XMAX = STEP*(2**ORDER)
 YMAX = XMAX
 
@@ -72,42 +73,44 @@ def create_canvas(window):
 # Animation loop
 def animate(window, canvas):
   # set initial coords
-  xlast = STEP/2
-  ylast = STEP/2
-  t = 0
   s = 0
-  mode = False
+  mode = 0
 
   while not done:
 
-    if mode:
-      x, y = hilbert_s_to_xy(t, ORDER)
-      x = STEP/2 + STEP*x
-      y = STEP/2 + STEP*y
+    if mode%2==0:
+      tvals=list(range(0, 2**(2*ORDER)))
+      if mode==2:
+        random.shuffle(tvals)
+      for t in tvals:
+        x, y = hilbert_s_to_xy(t, ORDER)
+        x = STEP/2 + STEP*x
+        y = STEP/2 + STEP*y
 
-      canvas.create_line(xlast, ylast, x, y, width=4, fill=brightpink, tag='line')
+        if t != 2**(2*ORDER)-1: # don't draw beyond last point
+          x_n, y_n = hilbert_s_to_xy(t+1, ORDER)
+          x_n = STEP/2 + STEP*x_n
+          y_n = STEP/2 + STEP*y_n
+          canvas.create_line(x, y, x_n, y_n, width=4, fill=brightpink, tag='line')
 
-      window.update()
-      time.sleep(DELAY)
-      window.update()
-
-      xlast = x
-      ylast = y
-
-      t += 1
-      if t == 2**(2*ORDER):
-        xlast = STEP/2
-        ylast = STEP/2
-        t=0
-        canvas.delete('line')
-        time.sleep(20*DELAY)
         window.update()
-        time.sleep(20*DELAY)
-        mode = not mode
+        time.sleep(DELAY)
+        window.update()
+
+      canvas.delete('line')
+      time.sleep(80*DELAY)
+      window.update()
+      time.sleep(80*DELAY)
+      mode = mode + 1
 
     else:
-      for y in range(0, 2**ORDER):
-        for x in range(0, 2**ORDER):
+      yr = list(range(0,2**ORDER))
+      xr = list(range(0,2**ORDER))
+      if mode==3:
+          random.shuffle(yr)
+          random.shuffle(xr)
+      for y in yr:
+        for x in xr:
           s = hilbert_xy_to_s(x, y, ORDER)
           xs = STEP/2 + STEP*x
           ys = STEP/2 + STEP*y
@@ -118,7 +121,9 @@ def animate(window, canvas):
           window.update()
 
       canvas.delete('text')
-      mode = not mode
+      mode = mode + 1
+      if mode==4:
+          mode = 0
 
       time.sleep(20*DELAY)
       window.update()
