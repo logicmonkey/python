@@ -54,9 +54,9 @@ def zigzag_xy_to_s(x, y, ORDER):
     # distance s is purely a function of W, x and y
     return  N + K*zz_xy_to_s(xt, yt)
 
-ORDER = 8
-STEP  = 50
-DELAY = 0.02
+ORDER = 16
+STEP  = int(110/math.sqrt(ORDER))
+DELAY = 0.01
 XMAX = STEP*ORDER
 YMAX = XMAX
 
@@ -84,9 +84,6 @@ def create_canvas(window):
 # Animation loop
 def animate(window, canvas):
   # set initial coords
-  xlast = STEP/2
-  ylast = STEP/2
-  t = 0
   s = 0
   mode = True
 
@@ -95,13 +92,13 @@ def animate(window, canvas):
     if mode:
       tvals=list(range(0, ORDER**2))
       random.shuffle(tvals)
-      for tv in tvals:
-        x, y = zigzag_s_to_xy(tv, ORDER)
+      for t in tvals:
+        x, y = zigzag_s_to_xy(t, ORDER)
         x = STEP/2 + STEP*x
         y = STEP/2 + STEP*y
 
-        if tv != ORDER**2-1: # don't draw beyond last point
-          x_n, y_n = zigzag_s_to_xy(tv+1, ORDER)
+        if t != ORDER**2-1: # don't draw beyond last point
+          x_n, y_n = zigzag_s_to_xy(t+1, ORDER)
           x_n = STEP/2 + STEP*x_n
           y_n = STEP/2 + STEP*y_n
           canvas.create_line(x, y, x_n, y_n, width=4, fill=brightpink, tag='line')
@@ -111,9 +108,9 @@ def animate(window, canvas):
         window.update()
 
       canvas.delete('line')
-      time.sleep(20*DELAY)
+      time.sleep(80*DELAY)
       window.update()
-      time.sleep(20*DELAY)
+      time.sleep(80*DELAY)
       mode = not mode
 
     else:
