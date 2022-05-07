@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="131.20123mm"
+   height="39.701164mm"
+   viewBox="0 0 131.20122 39.701164"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (b8e25be8, 2022-02-05)"
+   sodipodi:docname="zz_bounded.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="0.68628166"
+     inkscape:cx="370.11043"
+     inkscape:cy="300.89687"
+     inkscape:window-width="1312"
+     inkscape:window-height="815"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(1.3957536,-12.394317)">
+    <g
+       id="g23908"
+       transform="translate(-19.050006)">
+      <rect
+         style="fill:#e6e6e6;stroke:#00aa00;stroke-width:0.277095;stroke-dasharray:0.277095, 0.554192"
+         id="rect18836"
+         width="40.06913"
+         height="22.886961"
+         x="23.973881"
+         y="12.532865" />
+      <text
+         xml:space="preserve"
+         style="font-size:3.52777px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+         x="22.537943"
+         y="16.527824"
+         id="text1574"><tspan
+           sodipodi:role="line"
+           id="tspan1572"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:mono;-inkscape-font-specification:mono;stroke-width:0.264583"
+           x="22.537943"
+           y="16.527824">  <tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace"
+   id="tspan36252">0   2   3   9  10  </tspan><tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:monospace;-inkscape-font-specification:'monospace Bold'"
+   id="tspan29720">20  21</tspan><tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace"
+   id="tspan36254">  35  36</tspan></tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
+           x="22.537943"
+           y="20.973782"
+           id="tspan1576">  1   4   8  11  <tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:monospace;-inkscape-font-specification:'monospace Bold'"
+   id="tspan59328">19</tspan>  <tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:monospace;-inkscape-font-specification:'monospace Bold'"
+   id="tspan44104">22</tspan>  34  37</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
+           x="22.537943"
+           y="25.419739"
+           id="tspan1578">  5   7  12  <tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:monospace;-inkscape-font-specification:'monospace Bold'"
+   id="tspan60782">18  23</tspan>  33  38</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
+           x="22.537943"
+           y="29.865696"
+           id="tspan1580">  6  13  <tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:monospace;-inkscape-font-specification:'monospace Bold'"
+   id="tspan61624">17  24  32</tspan>  39</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
+           x="22.537943"
+           y="34.311653"
+           id="tspan1582"> 14  <tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:monospace;-inkscape-font-specification:'monospace Bold'"
+   id="tspan63066">16  25  31  40</tspan></tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
+           x="22.537943"
+           y="38.75761"
+           id="tspan1584"> <tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:monospace;-inkscape-font-specification:'monospace Bold'"
+   id="tspan46764">15  </tspan>26  30  41</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
+           x="22.537943"
+           y="43.203568"
+           id="tspan1586"> 27  29  42</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
+           x="22.537943"
+           y="47.649525"
+           id="tspan1588"> 28  43</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
+           x="22.537943"
+           y="52.095482"
+           id="tspan1590"> 44</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:mono;-inkscape-font-specification:mono;stroke-width:0.264583"
+           x="22.537943"
+           y="56.541439"
+           id="tspan1592" /></text>
+    </g>
+    <g
+       id="g23917"
+       transform="translate(64.558368,-45.979083)">
+      <rect
+         style="fill:#e6e6e6;stroke:#00aa00;stroke-width:0.277095;stroke-dasharray:0.277095, 0.554192"
+         id="rect18836-8"
+         width="40.06913"
+         height="22.886961"
+         x="25.039434"
+         y="58.511948" />
+      <text
+         xml:space="preserve"
+         style="font-size:3.52777px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
+         x="24.150814"
+         y="62.434322"
+         id="text23082"><tspan
+           sodipodi:role="line"
+           id="tspan23080"
+           style="stroke-width:0.264583"
+           x="24.150814"
+           y="62.434322">  0   2   3   9  10</tspan><tspan
+           sodipodi:role="line"
+           style="stroke-width:0.264583"
+           x="24.150814"
+           y="66.844032"
+           id="tspan23084">  1   4   8  11  18</tspan><tspan
+           sodipodi:role="line"
+           style="stroke-width:0.264583"
+           x="24.150814"
+           y="71.253746"
+           id="tspan23086">  5   7  12  17  19</tspan><tspan
+           sodipodi:role="line"
+           style="stroke-width:0.264583"
+           x="24.150814"
+           y="75.66346"
+           id="tspan23088">  6  13  16  20  23</tspan><tspan
+           sodipodi:role="line"
+           style="stroke-width:0.264583"
+           x="24.150814"
+           y="80.073174"
+           id="tspan23090"> 14  15  21  22  24</tspan></text>
+    </g>
+    <path
+       style="fill:none;stroke:#00aa00;stroke-width:0.705556;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.705556, 1.41111;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 95.501332,32.199718 124.6579,16.826342"
+       id="path23952"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#00aa00;stroke-width:0.705556;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.705556, 1.41111;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 10.280429,32.657091 39.436973,17.283715"
+       id="path23952-1"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-size:3.52777px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;stroke-width:0.264583"
+       x="-1.7075341"
+       y="15.074595"
+       id="text55058"><tspan
+         sodipodi:role="line"
+         id="tspan55056"
+         style="stroke-width:0.264583"
+         x="-1.7075341"
+         y="15.074595">(a)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:3.52777px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;stroke-width:0.264583"
+       x="82.998444"
+       y="15.074595"
+       id="text55568"><tspan
+         sodipodi:role="line"
+         id="tspan55566"
+         style="stroke-width:0.264583"
+         x="82.998444"
+         y="15.074595">(b)</tspan></text>
+  </g>
+</svg>
