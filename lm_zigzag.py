@@ -38,25 +38,29 @@ def tri_root(n):
     return (isqrt(n<<3|1)-1)>>1
 
 def zz_s_to_xy(s, rpd): # distance s, right of principal diagonal
+    if rpd:
+        s = N*N-1 - s
+        xt, yt = N-1, N-1
     tr = tri_root(s)
     t = tri(tr) # nearest triangular number less than or equal to s
     d = s-t     # distance from the triangular start of diagonal
+
     if tr%2:    # check if the diagonal is an odd or even one
         if rpd: # right of principal diagonal
-            return N-1-d, N-1-tr+d
+            return xt-d, yt-tr+d
         else:
             return d, tr-d
     else:
         if rpd:
-            return N-1-tr+d, N-1-d
+            return xt-tr+d, yt-d
         else:
             return tr-d, d
 
-def zigzag_s_to_xy(s, N):
+def zigzag_s_to_xy(s):
     if (s<N*N/2): # left of main diagonal
-        return zz_s_to_xy(s, 0)
+        return zz_s_to_xy(s, False)
     else:                 # right of main diagonal: reflect
-        return zz_s_to_xy(N**2-1-s, 1)
+        return zz_s_to_xy(s, True)
 
 def zz_xy_to_s(x, y):
     # Even and odd diagonals increment in different directions
@@ -65,7 +69,7 @@ def zz_xy_to_s(x, y):
     else:
         return tri(x+y) + y # for diagonals going down and left
 
-def zigzag_xy_to_s(x, y, N):
+def zigzag_xy_to_s(x, y):
     if (x+y<N): # left of main diagonal
         END = 0
         K = 1
@@ -114,12 +118,12 @@ def animate(window, canvas):
       if mode==2:
         random.shuffle(tvals)
       for t in tvals:
-        x, y = zigzag_s_to_xy(t, N)
+        x, y = zigzag_s_to_xy(t)
         x = STEP/2 + STEP*x
         y = STEP/2 + STEP*y
 
         if t != N**2-1: # don't draw beyond last point
-          x_n, y_n = zigzag_s_to_xy(t+1, N)
+          x_n, y_n = zigzag_s_to_xy(t+1)
           x_n = STEP/2 + STEP*x_n
           y_n = STEP/2 + STEP*y_n
           canvas.create_line(x, y, x_n, y_n, width=4, fill=brightpink, tag='line')
@@ -135,14 +139,14 @@ def animate(window, canvas):
       mode = mode + 1
 
     else:
-      yr = list(range(0,N))
-      xr = list(range(0,N))
+      yr = list(range(0, N))
+      xr = list(range(0, N))
       if mode==3:
           random.shuffle(yr)
           random.shuffle(xr)
       for y in yr:
         for x in xr:
-          s = zigzag_xy_to_s(x, y, N)
+          s = zigzag_xy_to_s(x, y)
           xs = STEP/2 + STEP*x
           ys = STEP/2 + STEP*y
           canvas.create_text(xs, ys, text=s, tag='text')

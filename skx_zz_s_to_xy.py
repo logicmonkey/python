@@ -35,27 +35,31 @@ def tri(n):
 def tri_root(n):
     return (isqrt(n<<3|1)-1)>>1
 
-def zz_s_to_xy(s, rpd, N): # distance s, right of principal diagonal
+def zz_s_to_xy(s, rpd): # distance s, right of principal diagonal
+    if rpd:
+        s = N*N-1 - s
+        xt, yt = N-1, N-1
     tr = tri_root(s)
     t = tri(tr) # nearest triangular number less than or equal to s
     d = s-t     # distance from the triangular start of diagonal
+
     if tr%2:    # check if the diagonal is an odd or even one
         if rpd: # right of principal diagonal
-            return N-1-d, N-1-tr+d
+            return xt-d, yt-tr+d
         else:
             return d, tr-d
     else:
         if rpd:
-            return N-1-tr+d, N-1-d
+            return xt-tr+d, yt-d
         else:
             return tr-d, d
 
-def zigzag_s_to_xy(s, N):
-    if (s<N*N/2): # left of principal diagonal
-        return zz_s_to_xy(s, 0, N)
+def zigzag_s_to_xy(s):
+    if s<N*N/2: # left of principal diagonal
+        return zz_s_to_xy(s, False)
     else:         # right of principal diagonal: reflect
-        return zz_s_to_xy(N*N-1-s, 1, N)
+        return zz_s_to_xy(s, True)
 
 for s in range(0, N*N):
-    x, y = zigzag_s_to_xy(s, N)
+    x, y = zigzag_s_to_xy(s)
     print("{:3d} {:3d} {:3d}".format(s,x,y))

@@ -9,7 +9,7 @@
 N = 5
 
 def tri(n):
-    return int(n*(n+1)/2) # Triangular number starts a diagonal
+    return (n*(n+1))>>1 # Triangular number starts a diagonal
 
 def zz_xy_to_s(x, y):
     if (x+y)%2:
@@ -17,7 +17,7 @@ def zz_xy_to_s(x, y):
     else:
         return tri(x+y) + y # for diagonals going down and left
 
-def zigzag_xy_to_s(x, y, N):
+def zigzag_xy_to_s(x, y):
     if (x+y<N): # left of main diagonal
         END = 0
         K = 1
@@ -34,6 +34,6 @@ def zigzag_xy_to_s(x, y, N):
 
 for y in range(0, N):
     for x in range(0, N):
-        s = zigzag_xy_to_s(x, y, N)
+        s = zigzag_xy_to_s(x, y)
         print("{:3d} ".format(s), end='')
     print("")
