@@ -10,6 +10,6 @@ zigzag.pdf: zigzag.tex zigzag.bib zz_infinite.pdf zz_bounded.pdf zz_example.pdf
 	inkscape $< -o $@
 
 tidy:
-	rm -rf *.gz *.aux *.log *.fls *.out *.toc *.pages *.fdb* *.bbl *.xml *.blg *-blx.bib
+	rm -rf *.gz *.aux *.log *.fls *.out *.toc *.pages *.fdb* *.bbl *.xml *.blg *-blx.bib zz_*.pdf
 clean: tidy
-	rm *.pdf
+	rm zigzag.pdf
