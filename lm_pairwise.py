@@ -7,6 +7,7 @@ GRID = 40
 BLOB = GRID>>2
 XMAX = 2*GRID+int(N*math.log2(N)*(math.log2(N)-1)/4+N-1)*GRID
 YMAX = GRID+N*GRID
+NODES= []
 
 # Main window
 def create_window():
@@ -40,6 +41,8 @@ def pairwise(window, canvas, data):
         b = a
         c = 0
         while b < N:
+            NODES.append(b-a)
+            NODES.append(b)
             canvas.create_line(x, GRID+GRID*(b-a), x, GRID+GRID*b, width=BLOB, fill=COLOR[col])
             canvas.create_oval(x-BLOB, GRID+GRID*(b-a)-BLOB, x+BLOB, GRID+GRID*(b-a)+BLOB, width=BLOB, outline=COLOR[col], fill=COLOR[col])
             canvas.create_oval(x-BLOB, GRID+GRID*b-BLOB, x+BLOB, GRID+GRID*b+BLOB, width=BLOB, outline=COLOR[col], fill=COLOR[col])
@@ -65,6 +68,8 @@ def pairwise(window, canvas, data):
             b = (d + 1) * a
             c = 0
             while b < N:
+                NODES.append(b-d*a)
+                NODES.append(b)
                 canvas.create_line(x, GRID+GRID*(b-d*a), x, GRID+GRID*b, width=BLOB, fill=COLOR[col])
                 canvas.create_oval(x-BLOB, GRID+GRID*(b-d*a)-BLOB, x+BLOB, GRID+GRID*(b-d*a)+BLOB, width=BLOB, outline=COLOR[col], fill=COLOR[col])
                 canvas.create_oval(x-BLOB, GRID+GRID*b-BLOB, x+BLOB, GRID+GRID*b+BLOB, width=BLOB, outline=COLOR[col], fill=COLOR[col])
@@ -102,5 +107,8 @@ random.shuffle(data)
 print(data)
 data = pairwise(window, canvas, data)
 print(data)
+print("CX: ",int(N*math.log2(N)*(math.log2(N)-1)/4+N-1))
+print("n.log(n): ", int(N*math.log2(N)))
+print("Nodes: ", NODES)
 i=input('ENTER TO CLOSE')
 window.destroy()
